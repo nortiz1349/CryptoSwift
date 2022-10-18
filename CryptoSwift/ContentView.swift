@@ -25,7 +25,6 @@ struct ContentView: View {
 					.foregroundColor(.theme.green)
 			}
 			.font(.title)
-			.bold()
 		}
     }
 }
