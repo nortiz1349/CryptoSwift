@@ -27,6 +27,7 @@ struct HomeView: View {
     }
 }
 
+// MARK: - PREVIEW
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
 		NavigationView {
@@ -36,6 +37,7 @@ struct HomeView_Previews: PreviewProvider {
     }
 }
 
+// MARK: - EXTENSION
 extension HomeView {
 	
 	private var homeHeader: some View {
