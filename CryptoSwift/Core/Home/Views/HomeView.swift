@@ -85,6 +85,7 @@ extension HomeView {
 				CoinRowView(coin: coin, showHoldingsColumn: false)
 					.listRowInsets(.init(top: 10, leading: 0, bottom: 10, trailing: 10))
 			}
+			.padding(1)
 		}
 		.listStyle(.plain)
 	}
@@ -95,6 +96,7 @@ extension HomeView {
 				CoinRowView(coin: coin, showHoldingsColumn: true)
 					.listRowInsets(.init(top: 10, leading: 0, bottom: 10, trailing: 10))
 			}
+			.padding(1)
 		}
 		.listStyle(.plain)
 	}
