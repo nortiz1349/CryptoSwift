@@ -120,13 +120,45 @@ extension HomeView {
 	
 	private var columnTitle: some View {
 		HStack {
-			Text("Coin")
+			HStack(spacing: 4.0) {
+				Text("Coin")
+				Image(systemName: "chevron.down")
+					.opacity((vm.sortOption == .rank || vm.sortOption == .rankReversed) ? 1.0 : 0)
+					.rotation3DEffect(Angle(degrees: vm.sortOption == .rank ? 0 : 180), axis: (x:1, y:0, z:0))
+//					.rotationEffect(Angle(degrees: vm.sortOption == .rank ? 0 : 180))
+			}
+			.onTapGesture {
+				withAnimation {
+					vm.sortOption = vm.sortOption == .rank ? .rankReversed : .rank
+				}
+			}
 			Spacer()
 			if showPortfolio {
-				Text("Holding")
+				HStack(spacing: 4.0) {
+					Text("Holding")
+					Image(systemName: "chevron.down")
+						.opacity((vm.sortOption == .holdings || vm.sortOption == .holdingReversed) ? 1.0 : 0)
+						.rotation3DEffect(Angle(degrees: vm.sortOption == .holdings ? 0 : 180), axis: (x:1, y:0, z:0))
+				}
+				.onTapGesture {
+					withAnimation {
+						vm.sortOption = vm.sortOption == .holdings ? .holdingReversed : .holdings
+					}
+				}
 			}
-			Text("Price")
-				.frame(width: UIScreen.main.bounds.width / 3.5, alignment: .trailing)
+			HStack(spacing: 4.0) {
+				Text("Price")
+					.frame(width: UIScreen.main.bounds.width / 3.5, alignment: .trailing)
+				Image(systemName: "chevron.down")
+					.opacity((vm.sortOption == .price || vm.sortOption == .priceReversed) ? 1.0 : 0)
+					.rotation3DEffect(Angle(degrees: vm.sortOption == .price ? 0 : 180), axis: (x:1, y:0, z:0))
+			}
+			.onTapGesture {
+				withAnimation {
+					vm.sortOption = vm.sortOption == .price ? .priceReversed : .price
+				}
+			}
+			
 //			Button {
 //				withAnimation(.linear(duration: 2.0)) {
 //					vm.reloadData()
