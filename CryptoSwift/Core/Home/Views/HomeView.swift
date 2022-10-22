@@ -13,6 +13,9 @@ struct HomeView: View {
 	@State private var showPortfolio: Bool = false // animate right
 	@State private var showPortfolioView: Bool = false // new sheet
 	
+	@State private var selectedCoin: CoinModel? = nil
+	@State private var showDetailView: Bool = false
+	
     var body: some View {
 		ZStack {
 			// background layer
@@ -52,7 +55,7 @@ struct HomeView: View {
 // MARK: - PREVIEW
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-		NavigationView {
+		NavigationStack {
 			HomeView()
 				.navigationBarHidden(true)
 		}
@@ -94,13 +97,16 @@ extension HomeView {
 	}
 	
 	private var allCoinsList: some View {
-		List {
-			ForEach(vm.allCoins) { coin in
+		List(vm.allCoins) { coin in
+			NavigationLink(value: coin) {
 				CoinRowView(coin: coin, showHoldingsColumn: false)
-					.listRowInsets(.init(top: 10, leading: 0, bottom: 10, trailing: 10))
 			}
-			.padding(1)
+			.padding(.trailing, -10)
+			.padding(.leading, -20)
 		}
+		.navigationDestination(for: CoinModel.self, destination: { coin in
+			DetailView(coin: coin)
+		})
 		.refreshable {
 			vm.reloadData()
 		}
@@ -108,12 +114,18 @@ extension HomeView {
 	}
 	
 	private var portfolioCoinsList: some View {
-		List {
-			ForEach(vm.portfolioCoins) { coin in
+		List(vm.portfolioCoins) { coin in
+			NavigationLink(value: coin) {
 				CoinRowView(coin: coin, showHoldingsColumn: true)
-					.listRowInsets(.init(top: 10, leading: 0, bottom: 10, trailing: 10))
 			}
-			.padding(1)
+			.padding(.trailing, -10)
+			.padding(.leading, -20)
+		}
+		.navigationDestination(for: CoinModel.self, destination: { coin in
+			DetailView(coin: coin)
+		})
+		.refreshable {
+			vm.reloadData()
 		}
 		.listStyle(.plain)
 	}
