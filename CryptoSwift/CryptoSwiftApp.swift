@@ -21,7 +21,7 @@ struct CryptoSwiftApp: App {
         WindowGroup {
 			NavigationStack {
 				HomeView()
-//					.navigationBarHidden(true)
+					.navigationBarHidden(true)
 			}
 			.environmentObject(vm)
         }
