@@ -165,14 +165,14 @@ extension HomeView {
 				}
 			}
 			
-//			Button {
-//				withAnimation(.linear(duration: 2.0)) {
-//					vm.reloadData()
-//				}
-//			} label: {
-//				Image(systemName: "goforward")
-//					.rotationEffect(Angle(degrees: vm.isLoading ? 360 : 0), anchor: .center)
-//			}
+			Button {
+				withAnimation(.linear(duration: 2.0)) {
+					vm.reloadData()
+				}
+			} label: {
+				Image(systemName: "goforward")
+					.rotationEffect(Angle(degrees: vm.isLoading ? 360 : 0), anchor: .center)
+			}
 			
 
 		}
