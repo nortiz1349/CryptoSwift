@@ -9,16 +9,16 @@ import SwiftUI
 
 struct DetailView: View {
 	
-	let coin: CoinModel
+	@StateObject private var vm: DetailViewModel
 	
-//	init(coin: CoinModel) {
-//		self.coin = coin
-//		print("initializing Detail View for \(coin.name)")
-//	}
+	init(coin: CoinModel) {
+		_vm = StateObject(wrappedValue: DetailViewModel(coin: coin))
+		print("initializing Detail View for \(coin.name)")
+	}
 	
     var body: some View {
 		ZStack {
-			Text(coin.name)
+			Text("test")
 		}
     }
 }
