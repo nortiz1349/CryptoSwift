@@ -51,6 +51,7 @@ struct HomeView: View {
 			}
 			.sheet(isPresented: $showSettingsView) {
 				SettingsView()
+					.background(Color.theme.background)
 			}
 		}
     }
@@ -107,6 +108,7 @@ extension HomeView {
 			NavigationLink(value: coin) {
 				CoinRowView(coin: coin, showHoldingsColumn: false)
 			}
+			.listRowBackground(Color.theme.background)
 			.padding(.trailing, -10)
 			.padding(.leading, -20)
 		}
@@ -124,6 +126,7 @@ extension HomeView {
 			NavigationLink(value: coin) {
 				CoinRowView(coin: coin, showHoldingsColumn: true)
 			}
+			.listRowBackground(Color.theme.background)
 			.padding(.trailing, -10)
 			.padding(.leading, -20)
 		}
