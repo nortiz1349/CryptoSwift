@@ -24,9 +24,10 @@ class NetworkingManager {
 	
 	static func download(url: URL) -> AnyPublisher<Data, any Error> {
 		return URLSession.shared.dataTaskPublisher(for: url)
-			.subscribe(on: DispatchQueue.global(qos: .default))
+//			.subscribe(on: DispatchQueue.global(qos: .default)) // 기본적으로 백그라운드에서 작동하므로 삭제
 			.tryMap({ try handleURLResponse(output: $0, url: url) })
-			.receive(on: DispatchQueue.main)
+			.retry(3)
+//			.receive(on: DispatchQueue.main) // 최종 UI 프로세스에서 main 스레드로 넘겨줌
 			.eraseToAnyPublisher()
 	}
 	
